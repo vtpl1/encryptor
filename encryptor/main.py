@@ -57,7 +57,7 @@ def raise_unhandled_exeception_error():
 
 def init_argparser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description='Encryptor')
-    parser.add_argument('--input', help="Input folder to encrypt")
+    parser.add_argument('-i', '--input', help="Input folder to encrypt")
     # parser.add_argument('--uid', help="Input uid, e.g. admin")
     # parser.add_argument('--passwd', help="pass, e.g. admin")
 
@@ -99,7 +99,10 @@ def main():
     try:
         parser = init_argparser()
         args = parser.parse_args()
+        if args.input is not None:
+            LOGGER.info("Input {}".format(args.input))
         global is_shutdown
+        is_shutdown.set()
         while not is_shutdown.wait(10.0):
             continue
     except Exception as e:

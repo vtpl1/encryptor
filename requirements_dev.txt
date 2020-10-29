@@ -2,4 +2,5 @@ pylint
 yapf
 mypy
 pylama
+pytest
 bump2version
